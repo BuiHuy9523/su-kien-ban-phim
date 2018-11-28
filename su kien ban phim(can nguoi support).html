@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<canvas id = 'myCanvas' height=" 500" width="500" style="border: solid black 2px"></canvas>
+<body onkeydown = "move(event)";>
+<script>
+    var Snake = function (x, y) {
+        this.x = x;
+        this.y = y;
+        this.setX = function () {
+            this.x = x;
+        }
+        this.setY = function () {
+            this.y = y;
+        }
+        this.render = function (canvas) {
+            var context = canvas.getContext("2d");
+            context.beginPath();
+            context.fillStyle = 'red';
+            context.fillRect(this.x, this.y, 30, 30);
+            context.fill();
+        }
+        this.moveRight = function () {
+            this.x += 15;
+            if (this.x >= 470){
+                this.x = 0;
+            }
+        }
+        this.moveLeft = function () {
+            this.x -= 15;
+            if (this.x <= 0){
+                this.x = 470;
+            }
+        }
+        this.moveUp = function () {
+            this.y += 15;
+            if (this.y <= 0){
+                this.y = 470;
+            }
+        }
+        this.moveDown = function () {
+            this.y += 15;
+            if (this.y >= 470){
+                this.y = 0;
+            }
+        }
+    }
+    var snake = new Snake (50, 50);
+    var cavas = document.getElementById('myCanvas');
+    snake.render(cavas);
+    function move(event) {
+        if (event.which === 39){
+            snake.moveRight();
+        }else if (event.which === 37){
+            snake.moveLeft();
+        }else if (event.which === 38){
+            snake.moveUp();
+        }else  if (event.which === 40){
+            snake.moveDown();
+        }
+    }
+    var canvas = document.getElementById('myCanvas');
+    var context = canvas.getContext('2d');
+    var x = Math.random() * canvas.width;
+    var y = Math.random() * canvas.height;
+</script>
+</body>
+</html>
